@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: echo "/home/z1maka/WebstormProjects/micro_frontend" >> $GITHUB_PATH
+      - run: echo "/" >> $GITHUB_PATH
       - uses: actions/checkout@v2
       - run: npm install
       - run: npm run build
