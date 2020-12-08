@@ -16,12 +16,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: echo "/" >> $GITHUB_PATH
       - uses: actions/checkout@v2
       - run: npm install
       - run: npm run build
 
       - uses: chrislennon/action-aws-cli@v1.1
+      - run: echo "/home/z1maka/WebstormProjects/micro_frontend" >> $GITHUB_PATH
       - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/container/latest
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
