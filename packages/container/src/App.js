@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useState, useEffect } from "react";
-import { Route, Switch, Router } from "react-router-dom";
+import { Route, Switch, Router, Redirect } from "react-router-dom";
 import { createBrowserHistory } from "history";
 
 import Progress from "./components/Progress";
@@ -30,7 +30,10 @@ const App = () => {
             <Route path="/auth">
               <AuthLazy onSignIn={() => setIsSignedIn(true)} />
             </Route>
-            <Route path="/dashboard" component={DashboardLazy} />
+            <Route path="/dashboard">
+              {!isSignedIn && <Redirect to={"/"} />}
+              <DashboardLazy />
+            </Route>
             <Route path="/" component={MarketingLazy} />
           </Switch>
         </Suspense>
